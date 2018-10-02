@@ -1,0 +1,34 @@
+{
+  "name": "games.chaatz.com",
+  "version": "1.0.0",
+  "description": "## Message Type",
+  "main": "index.js",
+    "scripts": {
+      "test": "Nothing to Test"
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/chaatzltd/game-space-html-dev.git"
+  },
+  "author": "Geoffrey Tipton",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/chaatzltd/game-space-html-dev#readme",
+  "dependencies": {
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.5",
+    "bcrypt": ">=0",
+    "bison": "~1.1.1",
+    "connect": "~3.3.3",
+    "log": "~1.4.0",
+    "memcache": "~0.3.0",
+    "morgan": "^1.5.0",
+    "redis": ">=0",
+    "requirejs": ">=2",
+    "sanitizer": "~0.1.2",
+    "semver": "^5.1.0",
+    "serve-static": "^1.7.1",
+    "underscore": "~1.7.0"
+  }
+}

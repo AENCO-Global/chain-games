@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>BattleShips - chaatz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  </head>
+  <body style="background-color: yellow;">
+    <canvas id="testCanvas" width="600" height="300"></canvas>
+
+    <!-- begin important shit -->
+    <span style="font-family: 'myfontface#1font-family', badaboom, badaboom;"></span>
+    <script src="libs/jquery-2.2.3.js"></script>
+    <script type="text/javascript" src="js/imageMerge.js" ></script>
+    <!-- End important Shit -->
+
+    <script type="text/javascript">
+    // production example  0=none 1=left, 2=right
+    resultImg('http://dk3cyehio6m6f.cloudfront.net/profile_images/Ljozqnmjpk_small.jpg','Bobby Brown','3','/profile_images/Ljozqnmjpk_small.jpg','July West','3','./img/winbg.jpg',2,
+      function(myImg){ //For local image display only.
+        var c = document.getElementById("testCanvas");
+        var ctx = c.getContext("2d");
+        var img = myImg; 
+        ctx.drawImage(img,0,0,ctx.canvas.width,ctx.canvas.height);
+      },
+      function(mimeObj){ // Mime encoded version, needs to be done in the app
+        // console.log("Mime 64 image for Native call back",mimeObj);
+      }
+    );
+    </script>
+
+  </body>
+</html>

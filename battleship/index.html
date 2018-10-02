@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0"/>
+    <title>Battle Fleets</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- battleship css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+  </head>
+
+  <body>
+    <div id="mainbody">
+      <div class="rTable" id="myboard"><!-- battleship row 0 -->
+	<!-- <div class="rTableBody"> -->
+	<div class="rTableRow">
+	  <div class="rTableCell " id="00" > </div>
+	  <div class="rTableCell " id="01" > </div>
+	  <div class="rTableCell " id="02" > </div>
+	  <div class="rTableCell " id="03" > </div>
+	  <div class="rTableCell " id="04" > </div>
+	  <div class="rTableCell " id="05" > </div>
+	  <div class="rTableCell " id="06" > </div>
+	</div>
+	<!-- battleship row 1 -->
+	<div class="rTableRow">
+	  <div class="rTableCell " id="10" > </div>
+	  <div class="rTableCell " id="11" > </div>
+	  <div class="rTableCell " id="12" > </div>
+	  <div class="rTableCell " id="13" > </div>
+	  <div class="rTableCell " id="14" > </div>
+	  <div class="rTableCell " id="15" > </div>
+	  <div class="rTableCell " id="16" > </div>
+	</div>
+	<!-- battleship row 2 -->
+	<div class="rTableRow">
+	  <div class="rTableCell " id="20" > </div>
+	  <div class="rTableCell " id="21" > </div>
+	  <div class="rTableCell " id="22" > </div>
+	  <div class="rTableCell " id="23" > </div>
+	  <div class="rTableCell " id="24" > </div>
+	  <div class="rTableCell " id="25" > </div>
+	  <div class="rTableCell " id="26" > </div>
+	</div>
+	<!-- battleship row 3 -->
+	<div class="rTableRow">
+	  <div class="rTableCell " id="30" > </div>
+	  <div class="rTableCell " id="31" > </div>
+	  <div class="rTableCell " id="32" > </div>
+	  <div class="rTableCell " id="33" > </div>
+	  <div class="rTableCell " id="34" > </div>
+	  <div class="rTableCell " id="35" > </div>
+	  <div class="rTableCell " id="36" > </div>
+
+	</div>
+	<!-- battleship row 4 -->
+	<div class="rTableRow">
+	  <div class="rTableCell " id="40" > </div>
+	  <div class="rTableCell " id="41" > </div>
+	  <div class="rTableCell " id="42" > </div>
+	  <div class="rTableCell " id="43" > </div>
+	  <div class="rTableCell " id="44" > </div>
+	  <div class="rTableCell " id="45" > </div>
+	  <div class="rTableCell " id="46" > </div>
+	</div>
+	<!-- battleship row 5 -->
+	<div class="rTableRow">
+	  <div class="rTableCell " id="50" > </div>
+	  <div class="rTableCell " id="51" > </div>
+	  <div class="rTableCell " id="52" > </div>
+	  <div class="rTableCell " id="53" > </div>
+	  <div class="rTableCell " id="54" > </div>
+	  <div class="rTableCell " id="55" > </div>
+	  <div class="rTableCell " id="56" > </div>
+	</div>
+	<!-- battleship row 6 -->
+	<div class="rTableRow">
+	  <div class="rTableCell " id="60" > </div>
+	  <div class="rTableCell " id="61" > </div>
+	  <div class="rTableCell " id="62" > </div>
+	  <div class="rTableCell " id="63" > </div>
+	  <div class="rTableCell " id="64" > </div>
+	  <div class="rTableCell " id="65"  > </div>
+	  <div class="rTableCell " id="66" > </div>
+	</div>
+	<!-- </div> -->
+    </div>
+   
+      <!-- Board for incoming moves -->
+      <div class="rTable" id="theirboard"><!-- battleship row 0 -->
+		<!-- <div class="rTableBody"> -->
+		<div class="rTableRow">
+		  <div class="rTableCell " id="00"> </div>
+		  <div class="rTableCell " id="01"> </div>
+		  <div class="rTableCell " id="02"> </div>
+		  <div class="rTableCell " id="03"> </div>
+		  <div class="rTableCell " id="04"> </div>
+		  <div class="rTableCell " id="05"> </div>
+		  <div class="rTableCell " id="06"> </div>
+		</div>
+		<!-- battleship row 1 -->
+		<div class="rTableRow">
+		  <div class="rTableCell " id="10"> </div>
+		  <div class="rTableCell " id="11"> </div>
+		  <div class="rTableCell " id="12"> </div>
+		  <div class="rTableCell " id="13"> </div>
+		  <div class="rTableCell " id="14"> </div>
+		  <div class="rTableCell " id="15"> </div>
+		  <div class="rTableCell " id="16"> </div>
+		</div>
+		<!-- battleship row 2 -->
+		<div class="rTableRow">
+		  <div class="rTableCell " id="20"> </div>
+		  <div class="rTableCell " id="21"> </div>
+		  <div class="rTableCell " id="22"> </div>
+		  <div class="rTableCell " id="23"> </div>
+		  <div class="rTableCell " id="24"> </div>
+		  <div class="rTableCell " id="25"> </div>
+		  <div class="rTableCell " id="26"> </div>
+		</div>
+		<!-- battleship row 3 -->
+		<div class="rTableRow">
+		  <div class="rTableCell " id="30"> </div>
+		  <div class="rTableCell " id="31"> </div>
+		  <div class="rTableCell " id="32"> </div>
+		  <div class="rTableCell " id="33"> </div>
+		  <div class="rTableCell " id="34"> </div>
+		  <div class="rTableCell " id="35"> </div>
+		  <div class="rTableCell " id="36"> </div>
+		</div>
+		<!-- battleship row 4 -->
+		<div class="rTableRow">
+		  <div class="rTableCell " id="40"> </div>
+		  <div class="rTableCell " id="41"> </div>
+		  <div class="rTableCell " id="42"> </div>
+		  <div class="rTableCell " id="43"> </div>
+		  <div class="rTableCell " id="44"> </div>
+		  <div class="rTableCell " id="45"> </div>
+		  <div class="rTableCell " id="46"> </div>
+		</div>
+		<!-- battleship row 5 -->
+		<div class="rTableRow">
+		  <div class="rTableCell " id="50"> </div>
+		  <div class="rTableCell " id="51"> </div>
+		  <div class="rTableCell " id="52"> </div>
+		  <div class="rTableCell " id="53"> </div>
+		  <div class="rTableCell " id="54"> </div>
+		  <div class="rTableCell " id="55"> </div>
+		  <div class="rTableCell " id="56"> </div>
+		</div>
+		<!-- battleship row 6 -->
+		<div class="rTableRow">
+		  <div class="rTableCell " id="60"> </div>
+		  <div class="rTableCell " id="61"> </div>
+		  <div class="rTableCell " id="62"> </div>
+		  <div class="rTableCell " id="63"> </div>
+		  <div class="rTableCell " id="64"> </div>
+		  <div class="rTableCell " id="65"> </div>
+		  <div class="rTableCell " id="66"> </div>
+		</div>
+		<!-- </div> -->
+    </div>
+    <div id="winboard"><!-- battleship row 0 -->
+    </div>
+  <!-- <div class="shipForm" >
+	<div class="MyBattleshipsRow" style='display:none;'>
+	  <div class="MyBattleshipsCellTop top1" id="ship-1"><img class=" floating1" name='H' id="1" src="./img/ship1.png"> </div>
+	  <div class="MyBattleshipsCellTop top2" id="ship-2"><img class=" floating2" name='H' id="2" src="./img/ship2.png"> </div>
+	  <div class="MyBattleshipsCellTop top3" id="ship-3"><img class=" floating3" name='H' id="3" src="./img/ship3.png"> </div>
+	</div>
+	<div class="MyBattleshipsRow" style='display:none;'>
+	  <div class="MyBattleshipsCellBottom bot1" id="ship-4"><img class=" floating4" name='H' id="4" src="./img/ship4.png"> </div>
+	</div>
+	<div class="menuFrame">
+		<img src="img/bottom_bar.png">	
+	</div>
+	<div class="buttonNav">
+		<a id="closeMe" class="ghost" onclick="hook.closeView('index.html')" > Close </a>
+	</div>
+
+  </div> -->
+	<div class="buttonForm">
+		<div id="myChoices">
+	    </div>
+		<div class="menuFrame">
+		  <img src="img/bottom_bar.png">	
+		</div>
+	  </div>
+	</div>
+
+    <!-- Vendor -->
+    <script src="libs/jquery-2.2.3.js"></script>
+    <script src="libs/jquery-ui.js"></script>    
+    <script src="libs/jquery.ui.touch-punch.min.js"></script>	
+    <script src="libs/socket.io.js"></script>	   
+    <script src="libs/picoModal.js"></script>
+    <script src="libs/draggabilly.pkgd.js"></script>
+    
+    <!-- Chaatz -->
+    <script src="js/env.js"></script>
+    <script src="js/scenes.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/imageMerge.js"></script>
+    <script src="js/hook.js"></script>
+    <script src="js/game.js"></script>
+    <audio id="background"  preload="auto" loop="loop"> 
+   		<source src="audio/atmosphere.mp3" type="audio/mpeg">
+   		<source src="audio/atmosphere.ogg" type="audio/ogg">
+	</audio>
+    <audio id="hit" preload="auto"> 
+   		<source src="audio/hit.mp3" type="audio/mpeg">
+   		<source src="audio/hit.ogg" type="audio/ogg">
+	</audio>
+    <audio id="sonar" preload="auto"> 
+   		<source src="audio/ping.mp3" type="audio/mpeg">
+   		<source src="audio/ping.ogg" type="audio/ogg">
+	</audio>
+    <audio id="lose" preload="auto"> 
+   		<source src="audio/lose.mp3" type="audio/mpeg">
+   		<source src="audio/lose.ogg" type="audio/ogg">
+	</audio>
+    <audio id="place" preload="auto"> 
+   		<source src="audio/placement.mp3" type="audio/mpeg">
+   		<source src="audio/placement.ogg" type="audio/ogg">
+	</audio>
+    <audio id="shoot" preload="auto"> 
+   		<source src="audio/shoot.mp3" type="audio/mpeg">
+   		<source src="audio/shoot.ogg" type="audio/ogg">
+	</audio>
+    <audio id="sinkyou" preload="auto"> 
+   		<source src="audio/sinkyou.mp3" type="audio/mpeg">
+   		<source src="audio/sinkyou.ogg" type="audio/ogg">
+	</audio>
+    <audio id="sink" preload="auto"> 
+   		<source src="audio/sink.mp3" type="audio/mpeg">
+   		<source src="audio/sink.ogg" type="audio/ogg">
+	</audio>
+    <audio id="splash" preload="auto"> 
+   		<source src="audio/splash.mp3" type="audio/mpeg">
+   		<source src="audio/splash.ogg" type="audio/ogg">
+	</audio>
+    <audio id="win" preload="auto"> 
+   		<source src="audio/win.mp3" type="audio/mpeg">
+   		<source src="audio/win.ogg" type="audio/ogg">
+	</audio>
+  </body>  
+</html>

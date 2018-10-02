@@ -1,0 +1,1178 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+button {
+	outline: none;
+}
+
+/* CSS for the Games, after the reset Above */
+body {
+	background: black;
+}
+
+h1 {
+	font-family: "Roboto";
+	font-size: 150%;
+	font-weight: bold;
+}
+h2 {
+	font-family: "Roboto";
+	font-size: 140%;
+	font-weight: bold;
+}
+
+p {
+	font-family: "Roboto";
+	font-size: 100%;
+}
+
+/*battleship board display*/
+div#mainbody {
+	position: relative;
+	margin: auto;
+	display: block;
+	overflow: hidden;
+	height: 100vh;
+}
+
+div#myboard {
+	position: relative;
+	margin: auto;
+	display: block;
+   	background: url('../img/board.png') no-repeat;
+	background-size: 98% 100%;
+}
+
+div#theirboard {
+	position: relative;
+	margin: auto;
+	display: none;
+   	background: url('../img/enemy_grid_background.png') no-repeat;
+	background-size: 98% 100%;
+}
+
+.radar {	
+	position: absolute;
+	top: 3%;
+	left: 3%;
+	width: 96%;
+	height: 96%;
+   	background: url('../img/radar.png') no-repeat;
+	background-size: 96% 96%;
+}
+
+.spinRadar {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 96%;
+	height: 96%;
+	-webkit-animation:spin 3s linear infinite;
+    -moz-animation:spin 3s linear infinite;
+    animation:spin 3s linear infinite;
+	}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+div#winboard {
+	position: relative;
+	margin: auto;
+	display: none;
+}
+
+div#myChoices {
+	height: 100%;
+
+}
+
+@keyframes animatedBackgroundLeft {
+	from { background-position: -100% 0%; }
+	to { background-position: 0 0; }
+}
+@keyframes animatedBackgroundRight {
+	from { background-position: 0 0; }
+	to { background-position: -100% 0%; }
+}
+
+.shipForm{
+	height: 30vh;
+	width: 100%;
+	text-align: center;
+	display: none;
+	background-image: url("../img/bg_sea.png");
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	-webkit-animation: animatedBackgroundLeft 50s linear infinite;
+	animation: animatedBackgroundLeft 50s linear infinite;
+	z-index:1;
+}
+
+.buttonForm{
+	height: 29vh;
+	width: 100%;
+	text-align: center;
+	display: block;
+	background-image: url("../img/bg_sea.png");
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	-webkit-animation: animatedBackgroundRight 20s linear infinite;
+	animation: animatedBackgroundRight 20s linear infinite;
+	z-index:1;
+}
+
+.menuFrame {
+	z-index:10;
+    position: absolute;
+    width: 100%;
+    bottom: -5px; /* place below the bottom line to remove the edge background. */
+
+}
+.menuFrame img{
+  width: 100%;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.drag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+
+}
+
+/*battleship form*/
+form {
+	position: absolute;
+	top: 25px;
+	right: 0;
+	padding: 10px;
+	background-color: rgb(83, 175, 19);
+	z-index: 100;
+}
+
+/*battleship form input*/
+form input {
+	background-color: rgb(152, 207, 113);
+	border-color: rgb(83, 175, 19);
+	font-size: 1em;
+}
+.form-control {
+	width: 70% !important;
+	margin-right: 5%;
+}
+/* Actions on hit or shoot */
+.hit{
+	background:url("../img/flame.gif") center center no-repeat; 
+	background-size: 150% 120% !important;
+}
+
+.miss{
+	background:url("../img/miss.png")center center no-repeat; 
+	background-size: 50% 50%;
+}
+
+.explode-hit{ /* my click and hit */
+	background:url("../img/hit.gif") center center no-repeat !important; 
+	background-size: contain !important;
+}
+
+.explode-miss{ /* my click and miss */
+	background:url("../img/miss-.gif") center center no-repeat !important; 
+	background-size: contain !important;
+}
+
+.flame{ /* my click and miss */
+	background:url("../img/flame.gif") center center no-repeat !important; 
+	background-size: 150% 120% !important;
+}
+
+
+
+.hit1 {
+	background: url('../img/ship1.png') no-repeat center center;
+}
+
+.hit2 {
+	background: url('../img/ship2.png') no-repeat center center;
+}
+.hit3 {
+	background: url('../img/ship3.png') no-repeat center center;
+}
+.hit4 {
+	background: url('../img/ship4.png') no-repeat center center;
+}
+.ship1 {
+	background: url('../img/ship1.png') no-repeat center center;
+}
+
+.ship2 {
+	background: url('../img/ship2.png') no-repeat center center;
+}
+.ship3 {
+	background: url('../img/ship3.png') no-repeat center center;
+}
+.ship4 {
+	background: url('../img/ship4.png') no-repeat center center;
+}
+
+
+/* Table Construction */
+.rTable {
+    display: table;
+    width: 100%;
+    height:70vh;
+    padding-top: 2.5%;
+    padding-left: 2.5%;
+
+}
+.rTableRow {
+    clear: both;
+    height:9.8vh;
+    margin-top: 0;
+    width:96%;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+    pointer-events: all;
+}
+.rTableCell {
+    border: 0px dotted white; /* Set this to 1 for debug frame */
+    display: table;
+    height:100%;
+    width: 14.2%;
+    overflow: hidden;
+}
+
+.MyBattleshipsRow {
+	z-index: 100;
+    border: 0px dotted white; /* Set this to 1 for debug frame */
+    clear: both;
+    height:6vh;
+    width:100%;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+    pointer-events: all;
+}
+.MyBattleshipsCellTop {
+    border: 0px dotted white; /* Set this to 1 for debug frame */
+    height:100%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.MyBattleshipsCellBottom {
+    border: 0px dotted white;
+    height:100%;
+    width: 100%;
+    display: inline-block;
+    z-index: 100;
+}
+.top1{
+    width: 20%;
+	border: 0 !important;
+}
+.top2{
+    width: 30%;
+}
+.top3{
+    width: 50%;
+}
+.bot1 img{
+    height: 100%;
+}
+
+.top1 img, .top3 img, .top2 img {
+	max-width:100%;
+	max-height:100%;
+}
+
+/* Ships */
+.ship1-single{
+	background: url("../img/ship1.png") center center no-repeat;
+	background-size: contain;
+    -webkit-animation: hovering 3s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 3s ease-out;
+    animation-iteration-count: infinite; 
+}
+.ship2-left {
+	background: url("../img/ship2-1.png") 0 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+.ship2-right{
+	background: url("../img/ship2-2.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.ship3-left {
+	background: url("../img/ship3-1.png") 0 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.ship3-mid{
+	background: url("../img/ship3-2.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.ship3-right{
+	background: url("../img/ship3-3.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.ship4-left {
+	background: url("../img/ship4-1.png") 0 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.ship4-left-mid{
+	background: url("../img/ship4-2.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.ship4-right-mid{
+	background: url("../img/ship4-3.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.ship4-right{
+	background: url("../img/ship4-4.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+/* Destroyed Ships Ships */
+.shipX1-single{
+	background: url("../img/shipX1.png") center center no-repeat;
+	background-size: contain;
+    -webkit-animation: hovering 3s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 3s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipX2-left {
+	background: url("../img/shipX2-1.png") 0 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipX2-right{
+	background: url("../img/shipX2-2.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipX3-left {
+	background: url("../img/shipX3-1.png") 0 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipX3-mid{
+	background: url("../img/shipX3-2.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipX3-right{
+	background: url("../img/shipX3-3.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipX4-left {
+	background: url("../img/shipX4-1.png") 0 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipX4-left-mid{
+	background: url("../img/shipX4-2.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipX4-right-mid{
+	background: url("../img/shipX4-3.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipX4-right{
+	background: url("../img/shipX4-4.png") 0px 5px no-repeat;
+	background-size: cover;
+    -webkit-animation: hovering 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: hovering 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+
+/* Verticle Ships Ships */
+.shipUp1-single{
+	background: url("../img/shipUp1.png") center center no-repeat;
+	background-size: contain;
+	background-position: 50% 100%; 
+
+    -webkit-animation: sweeping 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    animation: sweeping 3s ease-out;
+    animation-iteration-count: infinite;
+
+}
+
+.shipUp2-top {
+	background: url("../img/shipUp2-1.png") 0 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipUp2-bot{
+	background: url("../img/shipUp2-2.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipUp3-top {
+	background: url("../img/shipUp3-1.png") 0 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUp3-mid{
+	background: url("../img/shipUp3-2.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUp3-bot{
+	background: url("../img/shipUp3-3.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipUp4-top {
+	background: url("../img/shipUp4-1.png") 0 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUp4-top-mid{
+	background: url("../img/shipUp4-2.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUp4-bot-mid{
+	background: url("../img/shipUp4-3.png") 0px 0px no-repeat;
+	background-size: cover;
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+}
+.shipUp4-bot{
+	background: url("../img/shipUp4-4.png") 0px 0px no-repeat;
+	background-size: cover;
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+}
+
+
+/* Xploded Ships */
+.shipUpX1-single{
+	background: url("../img/shipUpX1.png") center center no-repeat;
+	background-size: contain;
+	background-position: 100% 100%; 
+    -webkit-animation: sweeping 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    animation: sweeping 3s ease-out;
+    animation-iteration-count: infinite;
+
+}
+
+.shipUpX2-top {
+	background: url("../img/shipUpX2-1.png") 0 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipUpX2-bot{
+	background: url("../img/shipUpX2-2.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipUpX3-top {
+	background: url("../img/shipUpX3-1.png") 0 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUpX3-mid{
+	background: url("../img/shipUpX3-2.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUpX3-bot{
+	background: url("../img/shipUpX3-3.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+.shipUpX4-top {
+	background: url("../img/shipUpX4-1.png") 0 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUpX4-top-mid{
+	background: url("../img/shipUpX4-2.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUpX4-bot-mid{
+	background: url("../img/shipUpX4-3.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+.shipUpX4-bot{
+	background: url("../img/shipUpX4-4.png") 0px 0px no-repeat;
+	background-size: cover;
+    -webkit-animation: sweeping 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: sweeping 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+/* Popup Dialouge styles */
+.modals {
+	text-align: center;
+}
+
+.gray {
+	background-color: rgb(224, 224, 224) ;
+	border-radius: 10px !important;
+}
+.notice {
+	border-radius: 10px !important;
+}
+
+.actions {
+	border-radius: 10px !important;
+}
+
+.warning {
+	background-color: #FFF900 !important;
+	border-radius: 10px !important;
+}
+
+.warning p{
+	border-style: ridge ;
+	border-width: 2px;
+	border-color: gray;
+}
+
+
+
+/* Button Handling */
+button {
+	width: 25vw;
+	height: 6vh;
+	font-size: 100%;
+	color: #ffffff;
+	text-shadow: 2px 2px 2px #000;
+	border: solid thin #882d13;
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+	border-radius: .4em;
+	-webkit-box-shadow: 2px 2px 3px #999; 
+	box-shadow: 2px 2px 2px #bbb;
+	background-color: #ce401c;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#e9ede8), to(#ce401c),color-stop(0.4, #8c1b0b));
+
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none; 
+}
+
+button:active {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ce401c), to(#e9ede8),color-stop(0.4, #8c1b0b));
+	color: white;
+	text-shadow: 0px 0px 0px #000;
+}
+
+.delayed {
+  transition: all 0.2s;
+  transition-delay: 400ms;
+}
+
+.delayed:active {
+  transition: none;
+}
+
+.shine {
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: 1; 
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: 1; 
+}
+
+/* ghost Buttons */
+.buttonNav {
+	z-index: 100;
+	position: absolute;
+	bottom:7vh;
+	width: 90vw;
+	left: 5vw;
+}
+
+
+.ghost {
+  padding: 10px 0px 10px 0px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              color 0.2s ease-out;
+
+  margin-top: 2vh;
+
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
+
+.ghost:hover, #invite:active {
+  background-color: #fff; /* fallback */
+  color: #000;
+  transition: background-color 0.3s ease-in,
+              color 0.3s ease-in;
+}
+
+
+#invite {
+  display: none;
+  width: 90vw;
+  background-color: rgba(50, 205, 50, 0.1);
+}
+
+#invite:hover, #invite:active {
+  background-color: rgba(50, 205, 50, 0.4);
+}
+
+#closeMe {
+  display: inline-block;
+  width: 90vw;
+  padding: 10px 0px 10px 0px;
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
+#closeMe:hover, #closeMe:active {
+  background-color: rgba(0, 0, 255, 0.4);
+}
+
+#quitMe {
+  display: inline-block;
+  width: 90vw;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+#quitMe:hover, #closeMe:active {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+#startMe {
+  display: inline-block;
+  width: 90vw;
+  background-color: rgba(50,205,50, 0.1);
+}
+
+#startMe:hover, #closeMe:active {
+  background-color: rgba(50,205,50, 0.4);
+}
+
+#resetMe {
+  display: inline-block;
+  width: 90vw;
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
+#resetMe:hover, #closeMe:active {
+  background-color: rgba(0, 0, 255, 0.4);
+}
+
+#resetMeLeft {
+  display: inline-block;
+  width: 43vw;
+  background-color: rgba(0, 0, 255, 0.1);
+  margin-right: 2vw;
+}
+
+#resetMeLeft:hover, #closeMe:active {
+  background-color: rgba(0, 0, 255, 0.4);
+}
+
+#quitMeRight {
+  display: inline-block;
+  width: 43vw;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+#quitMeRight:hover, #closeMe:active {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+
+
+
+
+
+#resignMe {
+  display: inline-block;
+  width: 90vw;
+  padding: 10px 0px 10px 0px;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+#resignMe:hover, #closeMe:active {
+  background-color: rgba(255, 0, 0, 0.4);
+  color: #FFF;
+}
+
+/* Waiting Screen */
+#resendMe {
+  display: inline-block;
+  width: 42.5vw;
+  background-color: rgba(50, 205, 50, 0.1);
+  margin-right: 2vw;
+}
+
+#resendMe:hover, #closeMe:active {
+  background-color: rgba(50, 205, 50, 0.4);
+}
+
+#waitNoMoreMe {
+  display: inline-block;
+  width: 42.5vw;
+  background-color: rgba(255, 0, 0, 0.1);
+  margin-left: 2vw;
+}
+
+#waitNoMoreMe:hover, #closeMe:active {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+
+
+/* End of Ghost Button */
+
+
+
+@keyframes pulsate {
+    0% {-webkit-transform: scale(0.9, 0.9) opacity: 1.0;}
+    50% {-webkit-transform: scale(1.1, 1.1) opacity: 1.0;}
+    100% {-webkit-transform: scale(1, 1) opacity: 1.0;}
+    0% {transform: scale(0.9, 0.9) opacity: 1.0;}
+    50% {transform: scale(1.1, 1.1) opacity: 1.0;}
+    100% {transform: scale(1, 1) opacity: 1.0;}
+}
+
+.floating1 {
+    -webkit-animation: drifting 3s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: drifting 3s ease-out;
+    animation-iteration-count: infinite; 
+}
+.floating2 {
+    -webkit-animation: drifting 4s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: drifting 4s ease-out;
+    animation-iteration-count: infinite; 
+}
+.floating3 {
+    -webkit-animation: drifting 5s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: drifting 5s ease-out;
+    animation-iteration-count: infinite; 
+}
+.floating4 {
+    -webkit-animation: drifting 6s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: drifting 6s ease-out;
+    animation-iteration-count: infinite; 
+}
+
+
+
+@keyframes drifting {
+    0% {-webkit-transform: translate(0, 0em) };
+    15% {-webkit-transform: translate(-.1em, 0em) rotate(2deg)};
+    30% {-webkit-transform: translate(0em, -.1em)};
+    45% {-webkit-transform: translate(.1em, .1em) rotate(-2deg)};
+    60% {-webkit-transform: translate(.1em, .1em)};
+    75% {-webkit-transform: translate(.1em, 0em) rotate(2deg)};
+    100% {-webkit-transform: translate(0em, 0em)};
+    0% {transform: translate(0, 0em) };
+    15% {transform: translate(-.1em, 0em) rotate(2deg)};
+    30% {transform: translate(0em, -.1em)};
+    45% {transform: translate(.1em, .1em) rotate(-2deg)};
+    60% {transform: translate(.1em, .1em)};
+    75% {transform: translate(.1em, 0em) rotate(2deg)};
+    100% {transform: translate(0em, 0em)};
+}
+
+@keyframes hovering {
+    0% {-webkit-transform: translate(0, 0em) };
+    25% {-webkit-transform: translate(0em, -.2em)};
+    50% {-webkit-transform: translate(0em, .3em)};
+    75% {-webkit-transform: translate(0em, -.1em)};
+    100% {-webkit-transform: translate(0em, 0em)};
+    0% {transform: translate(0, 0em) };
+    25% {transform: translate(0em, -.2em)};
+    50% {transform: translate(0em, .3em)};
+    75% {transform: translate(0em, -.1em)};
+    100% {transform: translate(0em, 0em)};
+}
+
+@keyframes sweeping {
+    0% {-webkit-transform: translate(0, 0em) };
+    25% {-webkit-transform: translate(-0.1em, 0em)};
+    50% {-webkit-transform: translate(0.2em, 0em)};
+    75% {-webkit-transform: translate(-0.1em, 0em)};
+    100% {-webkit-transform: translate(0em, 0em)};
+    0% {transform: translate(0, 0em) };
+    25% {transform: translate(-0.1em, 0em)};
+    50% {transform: translate(0.2em, 0em)};
+    75% {transform: translate(-0.1em, 0em)};
+    100% {transform: translate(0em, 0em)};
+}
+
+
+
+
+/***************************
+  /gameover START
+***************************/
+
+#gameover{
+    width:100vw;
+    height:100vh;
+    text-align:center;
+    
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #8da5a5;
+}
+
+#share-button{
+
+    margin:17px auto;
+
+    height:10vw;    
+    width:90%;
+    padding-top:5vw;
+    
+    border-radius:8px;
+    border:1px solid #8da5a5;
+    color:#8da5a5;
+    font-size:4.25vw;
+    background:white;
+}
+
+#gameover-close{
+    position: absolute;
+    left: 0;
+    right:    0;
+    bottom:   3vh;
+}
+
+#top-message{
+    float:left;
+    width:100%;
+    margin-top:18%;
+}
+
+#gameover h3{
+    font-size:14px;
+}
+
+#gameover h2{
+    font-weight:bold;
+    font-size:26px;
+    padding-top:1vh;
+}
+
+#profile{
+    width:40%;
+    float:left;
+    border-radius:100px;
+}
+
+#profile img{
+    width:102px;
+    height:102px;
+    border-radius:50%;
+    border-width:2px;
+    border-color:#8da5a5;
+    border-style:solid;
+}
+
+#profile-holder{
+    /* width:300px; */
+    max-width:90vw;
+    margin:0px auto;
+    padding:5px;
+    padding-top:5vh;
+    overflow:hidden;
+}
+
+#profile-name{
+    padding-top:10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:40vw;
+}
+
+#V{
+    padding-top:45px;
+    width:20%;
+    float:left;
+}
+
+#V h3{
+    font-weight:bold;
+}
+
+#score{
+    padding-top:150px;
+}
+
+.hidden{
+    visibility:hidden;
+}
+
+/***************************
+  /gameover END
+***************************/
+
+
+.shipdrag {
+	background-image: url('');
+  background-size: 100%;
+  display:inline-block;
+  background-size: cover;
+  position: absolute;
+  z-index: 999;
+}
+
+.ship1-is-dragging { 
+	opacity: 1.0;
+	width: 14vw;
+	height: 6vh;
+}
+
+.ship2-is-dragging { 
+	opacity: 1.0;
+	width: 26vw;
+	height: 8vh;
+}
+
+.ship3-is-dragging { 
+	opacity: 1.0;
+	width: 38vw;
+	height: 10vh;
+}
+
+.ship4-is-dragging { 
+	opacity: 1.0;
+	width: 54vw;
+	height: 10vh;
+}
+
+.ship1v-is-dragging { 
+	opacity: 1.0;
+	width: 10vw;
+	height: 10vh;
+}
+
+.ship2v-is-dragging { 
+	opacity: 1.0;
+	width: 14vw;
+	height: 20vh;
+}
+
+.ship3v-is-dragging { 
+	opacity: 1.0;
+	width: 14vw;
+	height: 30vh;
+}
+
+.ship4v-is-dragging { 
+	opacity: 1.0;
+	width: 17vw;
+	height: 39vh;
+}
+
+
+/***************************
+  /fonts START
+***************************/
+@font-face {
+    font-family: 'badaboom';
+    src: url('../img/BADABB_.TTF') format('truetype');
+}
+
+/***************************
+  /fonts END
+***************************/
+
+

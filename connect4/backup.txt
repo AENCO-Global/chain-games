@@ -1,0 +1,81 @@
+    var render = function() {
+
+	var template = '\
+<div id="preload-01"></div>\
+<div id="preload-02"></div>\
+<div id="players">\
+<div id="player">\
+<img src="{{player1-picture}}" class="player-image player1-image">\
+<div class="player-name" id="player1">{{player1-name}}</div>\
+</div>\
+<div id="player">\
+<img src="{{player2-picture}}" class="player-image player2-image">\
+<div class="player-name" id="player2">{{player2-name}}</div>\
+</div>\
+</div>\
+<div id="column-holder">\
+<div id="frame"></div>\
+<div class="column" id="column-0"></div>\
+<div class="column" id="column-1"></div>\
+<div class="column" id="column-2"></div>\
+<div class="column" id="column-3"></div>\
+<div class="column" id="column-4"></div>\
+<div class="column" id="column-5"></div>\
+<div class="column" id="column-6"></div>\
+</div>\
+{{close-row}}\
+</div>';
+
+	template = template.split('{{player1-picture}}').join("img/"+env.data.profile.me.color+"_button.png");
+	template = template.split('{{player2-picture}}').join("img/"+env.data.profile.yo.color+"_button.png");
+	template = template.split('{{player1-name}}').join(env.data.profile.me.name);
+	template = template.split('{{player2-name}}').join(env.data.profile.yo.name);
+
+	var bottomRow;
+	if(env.data.type == 'start'){
+	    bottomRow = '\
+<div id="close-button" class="options-button">\
+<span>Close</span>\
+</div>';
+	}else{
+	    bottomRow = '\
+<div id="give-up-button" class="halfscreen-button left">\
+<span>Give Up</span>\
+</div>\
+<div id="close-button" class="halfscreen-button right">\
+<span>Close</span>\
+</div>';
+	}	
+	template = template.split('{{close-row}}').join(bottomRow);
+	
+	var currentColumn;
+	var token;
+
+	// Traverse 2D array appending tokens in relevent places.
+	for (var x = 0; x <= 5; x++) {
+            for (var y = 0; y <= 6; y++) {
+
+		if (game[x][y] == env.tokens.red) {
+		    var token = '<img width="100%" src="img/red_button@2x.png" class="token r-token-'+x+'">';
+		    currentColumn = $('#column-'+y);
+		    currentColumn.append(token)
+		}
+		if (game[x][y] == env.tokens.yellow) {
+		    var token = '<img width="100%" src="img/yellow_button@2x.png" class="token y-token-'+x+'">';
+		    currentColumn = $('#column-'+y);
+		    currentColumn.append(token)
+		}
+		
+            }
+	}
+
+	$("body").html(template);
+
+	// $(window).on("load", function() {
+	//     $('body').show();
+	// });
+	    
+	// $(document).ready(function() {
+
+	// });
+    }

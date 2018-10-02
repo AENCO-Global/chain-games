@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../common/css/temp-checkers-style.css">
+    <title>checkers - chaatz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  </head>
+  <body>
+    <div id="game-holder">
+      <div id="players">
+      	<div id="player">
+      	  <img class="player-image player1-image">
+      	  <div class="player-name" id="player1"></div>
+      	</div>
+      	<div id="player">
+      	  <img class="player-image player2-image">
+      	  <div class="player-name" id="player2"></div>
+      	</div>
+      </div>
+
+      <div id="column-holder">
+      	<div id="frame"></div>
+      </div>
+    </div>
+       
+    <!-- vendor -->
+    <script src="../common/libs/jquery-1.12.2.min.js" type="text/javascript"></script>
+    <script src="../common/libs/interact.min.js" type="text/javascript"></script>
+    <script src="../common/libs/socket.io.js" type="text/javascript"></script>
+    <script src="../common/libs/picoModal.js" type="text/javascript"></script>   
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="../common/libs/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- cz -->
+    <script type="text/javascript" src="../common/js/modals.js" ></script>
+    <script type="text/javascript" src="js/env.js" ></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="../common/js/gameState.js" ></script>
+    <script type="text/javascript" src="../common/js/gameLibrary.js" ></script>
+    <script type="text/javascript" src="../common/js/sockets.js" ></script>
+    <script type="text/javascript" src="../common/js/nativeBridge.js" ></script>
+
+  </body>
+</html>

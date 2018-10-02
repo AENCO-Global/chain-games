@@ -1,0 +1,59 @@
+* game TODO
+  
+*** TODO Apply new facebook share code to refactored code
+    Note facebook share will be disabled for now but still 
+    should include the code just in case
+*** TODO Apply win screen fixes to refactored code
+*** DONE Fix up give up modal function
+*** TODO Highlight square slightly out of alignment
+    Try changing FRAME %.
+
+*** TODO Replay move feature
+    Serialize movesMade to string, transport,
+    Replay engine
+
+** TODO Game logic
+*** DONE Disable movement during view game !!
+*** DONE Board is reversed during view game
+*** TODO Mandatory moves modal needs fix
+*** DONE Need 'not your turn' modal
+*** DONE Disable movement for 'swift' players
+*** DONE *MUST* capture piece logic.
+    Need to check correctness of location
+*** DONE 'Jump'capture
+    CLOSED: [2016-06-30 Thu 12:12]
+*** DONE King making
+*** DONE Capture a king logic
+*** DONE King piece capture logic
+*** DONE Capture a king, AS a king logic
+*** DONE King 4 direction possible moves highlight
+*** DONE King can jump on an enemy to capture an enemy..
+*** DONE Piece can jump on an enemy to capture an enemy..
+*** DONE nth jump capture    
+*** DONE Game over 
+   
+** DONE Drag library
+*** DONE Don't allow squares not containing a piece to be picked up
+    CLOSED: [2016-06-27 Mon 17:45]
+*** DONE Revert logic
+*** DONE pieces cover eachother
+*** DONE If you tap just the square the highlighted style comes but doesn't go
+*** DONE Don't allow enemy pieces to be picked up
+*** DONE Center snap piece
+
+** TODO Finalizing
+*** TODO Run through whole flow
+*** TODO Clean up logs
+*** TODO Build test cases
+*** TODO Move to staging (production)?
+    Add missing icons to staging API
+*** TODO Revert connect4 in DEV branch to old (working) version
+
+** TODO Test cases:
+   *** REGULAR PIECE CAPTURE
+   *** REGULAR PIECE MOVE
+   *** KING PIECE CAPTURE
+   *** KING PIECE MOVE
+   *** REGULAR CAPTURE KING
+   *** KING CAPTURE REGULAR
+   *** GAME OVER

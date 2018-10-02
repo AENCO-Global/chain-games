@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./tower/js/config.js"></script>
+    <script type="text/javascript">
+    var server = {
+      init: function() {
+        this.connect(env['user'],env['room']);
+        document.getElementById("user_id").value = env['room'];
+        document.getElementById("room_id").value = env['user'] ;
+        document.getElementById("version").value = env['version'] ;
+      },
+      connect:  function(user_id,room_id) {
+        console.log("Connection:",env['server'],user_id,room_id);
+        this.socketio = io.connect(env['socket'], {query:'roomId='+room_id+'&userId='+user_id});
+        this.socketio.on("server", function(data) {  //Call back for the incomming messages
+          document.getElementById("chatlog").innerHTML = ("<hr/>" + JSON.stringify(data, null, 4) + document.getElementById("chatlog").innerHTML);
+        });
+      }, // connected
+      sendMessage: function(obj) {
+        var game_move = JSON.parse(obj);
+          this.socketio.emit("client", game_move);
+       },
+      reconnect: function reconnect() {
+        var room_id = document.getElementById("room_id").value;
+        var user_id = document.getElementById("user_id").value;
+        this.connect(user_id,room_id);
+      }
+    };
+      </script>
+    </head>
+    <body onload="server.init()">
+    <table>
+    	<tr><td>Tower Challenge</td><td>Version:<span id='version'></span></td></tr>
+        <tr><td>My User ID</td><td><input type="text" id="user_id"/></td></tr>
+        <tr><td>Room Name</td><td><input type="text" id="room_id"/><button onclick="server.reconnect()">Connect</button> </td></tr>
+        <tr><td>Message </td><td><input type="text" id="message_input"/><button onclick="server.sendMessage(document.getElementById('message_input').value)">send</button> </td></tr>
+    </table>
+    <div id="chatlog"></div>
+    </body>
+</html>

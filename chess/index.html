@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/chessboard-0.3.0.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>chess</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  </head>
+  <body>
+    
+    <div id="game-holder">
+      <div id="players">
+      	<div id="player">
+      	  <img class="player-image player1-image">
+      	  <div class="player-name" id="player1"></div>
+      	</div>
+      	<div id="player">
+      	  <img class="player-image player2-image">
+      	  <div class="player-name" id="player2"></div>
+      	</div>
+      </div>
+
+      <div id="game">
+	<div id="board"></div>
+      </div>
+
+    </div>
+    
+    <!-- vendor -->
+    <script src="libs/jquery-1.12.2.min.js" type="text/javascript"></script>
+    <script src="libs/picoModal.js" type="text/javascript"></script>
+    <!-- <script src="libs/socket.io.js" type="text/javascript"></script> -->
+    <script src="libs/chessboard-0.3.0.js" type="text/javascript"></script>
+    <script src="libs/chess.js" type="text/javascript"></script>
+
+    <!-- cz -->
+    <script type="text/javascript" src="js/modals.js" ></script>
+    <script type="text/javascript" src="js/env.js" ></script>
+    <script type="text/javascript" src="js/hook.js" ></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/scenes.js" ></script>
+    <script type="text/javascript" src="js/imageMerge.js" ></script>
+    <script type="text/javascript" src="js/game.js" ></script>
+
+    <!-- <audio id="audio" preload="auto">  -->
+    <!--   <source src="audio/thump.wav" type="audio/wav"> -->
+    <!-- </audio> -->
+    <!-- <audio id="audio-win" preload="auto"> -->
+    <!--   <source src="audio/win.wav" type="audio/wav"> -->
+    <!-- </audio> -->
+    <span style="font-family: 'myfontface#1font-family', badaboom, badaboom;"></span>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>js/game.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/connect4.html">connect4</a></li>
+                                <li><a href="../classes/functions.html">functions</a></li>
+                                <li><a href="../classes/socks.html">socks</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: js/game.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+ /**
+ * Connect4 game for 1-1 chat rooms in Chaatz.
+ * Users can start a game from Android/iOS clients from within
+ * a chatroom, make a move and transmit it to their chat partner
+ * via XMPP.
+ *
+ * This game relies on the native chaatz client for communication
+ * and persistence of data.
+ * 
+ * TODO LIST:
+ * - Integrate game with native client (iOS)
+ * - Version for facebook
+ * - Check types for strings
+ * - Clean up functions.js
+ * - Need to check in loadGame and packageGame that the string is correct before passing
+ *
+ * &quot;Would be nice&quot; list:
+ * - Animate entrance and exit (Probably needs to be done on native)
+ * - Swipe down to close the game
+ * 
+ * FLOW:
+ * - Check whose turn it is and set boolean.
+ * - Load previous game state
+ * - Render
+ * - Make a move
+ * - Check winner
+ * - If win, show WIN UI
+ * - Package outgoing
+ * - Close game
+ *
+ * @class connect4
+ * @requires functions
+ * @main connect4
+ */
+var connect4 = (function () {
+
+    GAME_OVER_MESSAGE = &quot;Game over!&quot;;    
+    winner = &quot;&quot;;
+    
+    /**
+     * Enumerates the tokens so they can be read more easily in the code.
+     * @attribute tokens
+     * @readOnly
+     */
+    tokens =
+	{
+	    &quot;red&quot;: &quot;1&quot;,
+	    &quot;yellow&quot;: &quot;2&quot;
+	}
+
+
+    // Dummy previous packet
+    packet =
+	{
+	    &quot;game&quot;: &quot;connect4&quot;,
+	    &quot;gid&quot;: &quot;&quot;,
+	    &quot;type&quot;:&quot;start&quot;,
+	    &quot;state&quot;: &quot;&quot;,
+	    &quot;turn&quot;: &quot;Nick&quot;,
+	    &quot;data&quot;:{
+		&quot;last_move&quot;:&quot;&quot;,
+		&quot;game_board&quot;:&quot;000000000000000000000000000000000000000000&quot;,
+	    },
+	    &quot;profile&quot;:{
+		// &quot;me&quot;: {&quot;uid&quot;:&quot;U001&quot;, &quot;name&quot;:&quot;Nick&quot;,&quot;img&quot;:&quot;&quot;,&quot;color&quot;:&quot;red&quot;,&quot;LOC&quot;:&quot;&quot;},
+		// &quot;yo&quot;: {&quot;uid&quot;:&quot;U002&quot;, &quot;name&quot;:&quot;Irfan&quot;,&quot;img&quot;:&quot;&quot;,&quot;color&quot;:&quot;yellow&quot;,&quot;LOC&quot;:&quot;&quot;}	
+		&quot;me&quot;: {&quot;uid&quot;:&quot;U001&quot;, &quot;name&quot;:&quot;Irfan&quot;,&quot;img&quot;:&quot;&quot;,&quot;color&quot;:&quot;yellow&quot;,&quot;LOC&quot;:&quot;&quot;},
+		&quot;yo&quot;: {&quot;uid&quot;:&quot;U002&quot;, &quot;name&quot;:&quot;Nick&quot;,&quot;img&quot;:&quot;&quot;,&quot;color&quot;:&quot;red&quot;,&quot;LOC&quot;:&quot;&quot;}
+	    },
+	    &quot;version&quot;:&quot;V1.2.003&quot;
+	}
+
+    /**
+     * Starts the game!
+     * @method initialize
+     * @constructor
+     */
+    var initialize = function(){
+
+	// Not needed in final version as we have Native hook
+	socks.init();
+
+	// Check whose turn it is and set turn status in game
+	my_turn = (packet.turn == packet.profile.me.name) ? true : false;
+	
+	// Load previous game data (if any)
+	game = functions.loadGameFromString(packet.data.game_board)
+	
+	// Render screen
+	functions.render();
+
+	// Add touch listeners
+	functions.bindEvents();
+	
+	// Show last move made animation
+	// functions.showLastMove();
+    };
+
+    return {initialize};
+}());
+connect4.initialize();
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

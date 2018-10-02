@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../common/css/style.css">
+    <title>connect4 - chaatz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  </head>
+  <body>
+
+    <div id="game-holder">
+      <!-- refactor to dynamic -->
+      <div id="players">
+      	<div id="player">
+      	  <img class="player-image player1-image">
+      	  <div class="player-name" id="player1"></div>
+      	</div>
+      	<div id="player">
+      	  <img class="player-image player2-image">
+      	  <div class="player-name" id="player2"></div>
+      	</div>
+      </div>
+
+      <div id="column-holder">
+      	<div id="frame"></div>
+      	<div class="column" id="column-0"></div>
+      	<div class="column" id="column-1"></div>
+      	<div class="column" id="column-2"></div>
+      	<div class="column" id="column-3"></div>
+      	<div class="column" id="column-4"></div>
+      	<div class="column" id="column-5"></div>
+      	<div class="column" id="column-6"></div>
+      </div>
+    </div>
+      
+    <!-- vendor -->
+    <script src="../common/libs/jquery-1.12.2.min.js" type="text/javascript"></script>
+    <script src="../common/libs/socket.io.js" type="text/javascript"></script>
+    <script src="../common/libs/picoModal.js" type="text/javascript"></script>
+
+    <!-- cz -->
+    <script type="text/javascript" src="../common/js/modals.js" ></script>
+    <script type="text/javascript" src="js/env.js" ></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="../common/js/gameState.js" ></script>
+    <script type="text/javascript" src="../common/js/gameLibrary.js" ></script>
+    <script type="text/javascript" src="../common/js/sockets.js" ></script>
+    <script type="text/javascript" src="../common/js/nativeBridge.js" ></script>
+    <script type="text/javascript" src="../common/gameState.js" ></script>
+
+  </body>
+</html>
