@@ -61,21 +61,23 @@ io.on('connection', function(socket) {
 });
 
 function gameStatus(socket,type){
-    var roomCount = io.sockets.adapter.rooms[socket.handshake.query.roomId].length;
-    console.log("Users connected are : ", roomCount);
-    if (roomCount < playerMin){ // Wait mode for all players
-        message = {"type":type,"status":"Waiting","count":roomCount};
-        console.log("Sending : ", message);
-        io.in(socket.handshake.query.roomId).emit('server', message); // All players
-    } else if (roomCount > playerMax) { // Spectate mode for the connecting player
-        message = {"type":type,"status":"spectate","count":roomCount};
-        console.log("Sending : ", message);
-        socket.emit('server', message); // Connecting player only
-    } else {  // Start mode for all players
-        message = {"type":type,"status":"start","count":roomCount};
-        console.log("Sending : ", message);
-        io.in(socket.handshake.query.roomId).emit('server', message); // All players
-    }   
+    if (type != 'disconnect') {
+        var roomCount = io.sockets.adapter.rooms[socket.handshake.query.roomId].length;
+        console.log("Users connected are : ", roomCount);
+        if (roomCount < playerMin) { // Wait mode for all players
+            message = {"type": type, "status": "Waiting", "count": roomCount};
+            console.log("Sending : ", message);
+            io.in(socket.handshake.query.roomId).emit('server', message); // All players
+        } else if (roomCount > playerMax) { // Spectate mode for the connecting player
+            message = {"type": type, "status": "spectate", "count": roomCount};
+            console.log("Sending : ", message);
+            socket.emit('server', message); // Connecting player only
+        } else {  // Start mode for all players
+            message = {"type": type, "status": "start", "count": roomCount};
+            console.log("Sending : ", message);
+            io.in(socket.handshake.query.roomId).emit('server', message); // All players
+        }
+    }
 };
 
 //-----------------------------------------------------------------------------------------------
