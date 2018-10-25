@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "## Message Type",
   "main": "index.js",
-    "scripts": {
-      "test": "Nothing to Test"
-    },
+  "scripts": {
+    "test": "Nothing to Test"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/chaatzltd/game-space-html-dev.git"
