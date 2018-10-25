@@ -1,5 +1,5 @@
 var env = [];
-	env.server = "http://localhost"; //"dev-ap-games.aencoin.io";	//change this from the server
+	env.server = "#"; //"dev-ap-games.aencoin.io";	//change this from the server
 	env.port = '8001'; 				//only to access the monitor web page tool
 	env.socket = env.server+':'+env.port;		
 	env.room = 'Room-001';  //Default
