@@ -1,6 +1,5 @@
 var http = require('http'),
-    fs = require('fs'),
-    path = require('path');
+    fs = require('fs');
 //    env = require('config.js');
 
 //===============================================================================================
@@ -11,25 +10,21 @@ var app = http.createServer(function (request, response) {
     //----------------------------------------------------------------------------
     //  HTTP Web landing page
     var filePath = '.' + request.url;
-    if (filePath == './')
-        filePath = './tower/server/client.html';
-        path.exists(filePath, function(exists) {
-        if (exists) {
-            fs.readFile(filePath, function(error, content) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
-                }
-                else {
-                    response.writeHead(200, { 'Content-Type': 'text/html' });
-                    response.end(content, 'utf-8');
-                }
-            });
-        }
-        else {
+    if (filePath == './') {
+        filePath = './client.html';
+    }
+    fs.readFile(filePath,  (err, content) =>  {
+    if (err) {
+        if (err.code === 'ENOENT') {
+            console.error('myfile does not exist',err);
             response.writeHead(404);
             response.end();
+            return;
         }
+        throw err;
+    }
+    response.writeHead(200, { 'Content-Type': 'text/html' });
+    response.end(content.toString(), 'utf-8');
     });  /*  */
     //  End HTTP Web landing page
     //-----------------------------------------------------------------------------

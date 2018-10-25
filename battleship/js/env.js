@@ -1,5 +1,5 @@
 var env = [];
-env.server = "dev-ap-games.chaatz.com"; // change this from the server
+env.server = "localhost"; // "dev-ap-games.aencoin.io"; // change this from the server
 env.port = '8001'; 								//change from the deployment
 env.socket = env.server+':'+env.port;		
 env.room = 'BS4';  //Default
